@@ -24,3 +24,28 @@ function create($name)
         echo $e->getMessage();
     }
 }
+
+function read()
+{
+    $con = new PDO("mysql:host=localhost;dbname=to_do_app", "root", "");
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    try {
+        $stmt = $con->prepare("
+            SELECT *
+            FROM tasks
+        ");
+
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $data = $stmt->fetchAll();
+
+        foreach ($data as $d) {
+            echo $d["name"] . "<br>";
+        }
+
+        $con = null;
+    } catch (PDOException $e) {
+        $e->getMessage();
+    }
+}

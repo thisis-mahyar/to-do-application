@@ -19,6 +19,8 @@ include "crud.php"
         <input type="submit" name="add" value="Add">
     </form>
 
+    <?php read() ?>
+
     <?php
     if (!empty($_POST["text"]))
         create($_POST["text"])
