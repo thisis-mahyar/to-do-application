@@ -1,3 +1,7 @@
+<?php
+include "crud.php"
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -8,12 +12,17 @@
 
 <body>
     <h1>To-Do Application</h1>
-    
-    <form>
+
+    <form action="to-do-application.php" method="POST">
         <label for="task">Add your task</label>
-        <input type="text" name="text">
+        <input type="text" name="text" required>
         <input type="submit" name="add" value="Add">
     </form>
+
+    <?php
+    if (!empty($_POST["text"]))
+        create($_POST["text"])
+    ?>
 
 </body>
 
