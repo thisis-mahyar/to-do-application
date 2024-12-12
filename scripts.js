@@ -25,3 +25,13 @@ const elementsUpdate = document.querySelectorAll(".update");
 for (let i = 0; i < elementsUpdate.length; i++) {
   elementsUpdate[i].addEventListener("click", f);
 }
+
+const elementsDelete = document.querySelectorAll(".delete");
+
+for (let i = 0; i < elementsDelete.length; i++) {
+  elementsDelete[i].addEventListener("click", function (e) {
+    const id = e.currentTarget.id.split("-")[1];
+    document.querySelector("#delete-id").value = id;
+    document.getElementById("delete-submit-id").click();
+  });
+}

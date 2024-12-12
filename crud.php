@@ -56,7 +56,7 @@ function read()
             echo
             "<td> 
             <button id='update-{$d['id']}' class='update'>Update</button>
-            <button id='delete-{$d['id']}' class='delete '>Delete</button>
+            <button id='delete-{$d['id']}' class='delete'>Delete</button>
             </td>";
             echo "</tr>";
         }
@@ -104,21 +104,14 @@ function delete($id)
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try {
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id)) {
-
-            $stmt = $con->prepare("
+        $stmt = $con->prepare("
                 DELETE FROM tasks
                 WHERE id = :id
             ");
 
-            $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":id", $id);
 
-            $stmt->execute();
-
-            // PRG Problem
-            header("Location: to-do-application.php");
-            exit;
-        }
+        $stmt->execute();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

@@ -49,9 +49,16 @@ include "crud.php"
         ?>
     </div>
 
+    <form action="to-do-application.php" method="POST" style="display: none;">
+        <input id="delete-id" name="delete-id" />
+        <input id="delete-submit-id" type="submit">
+    </form>
+
     <?php
     if (!empty($_POST["name"]))
-        create($_POST["name"], $_POST["description"])
+        create($_POST["name"], $_POST["description"]);
+    if (!empty($_POST["delete-id"]))
+        delete($_POST["delete-id"]);
     ?>
 
     <script src="scripts.js"></script>
