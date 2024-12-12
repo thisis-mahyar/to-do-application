@@ -55,8 +55,8 @@ function read()
             echo "<td>" . $d["status_name"] . "</td>";
             echo
             "<td> 
-            <a href=#>Update</a>
-            <a href=#>Delete</a>
+            <button id='update-{$d['id']}' class='update'>Update</button>
+            <button id='delete-{$d['id']}' class='delete '>Delete</button>
             </td>";
             echo "</tr>";
         }
@@ -68,3 +68,33 @@ function read()
         $e->getMessage();
     }
 }
+
+function update($name, $description, $id)
+{
+    $con = new PDO("mysql:hostname=localhost;dbname=to_do_app", "root", "");
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    try {
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($name) && !empty($description) && !empty($id)) {
+
+            $stmt = $con->prepare("
+            UPDATE tasks
+            SET name = :name, description = :description
+            WHERE id = :id
+            ");
+
+            $stmt->bindParam(":name", $name);
+            $stmt->bindParam(":description", $description);
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            // PRG Problem
+            header("Location: to-do-application.php");
+            exit;
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
