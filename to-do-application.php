@@ -54,32 +54,8 @@ include "crud.php"
         create($_POST["name"], $_POST["description"])
     ?>
 
-    <script>
-        const f = function(e) {
-            const id = e.currentTarget.id.split('-')[1];
+    <script src="scripts.js"></script>
 
-            document.querySelector('#update-id').value = id
-
-            document.querySelector('.modal').style.display = 'grid';
-
-            // if you click the background, the modal window disappears
-            document.querySelector('.update-form-background').addEventListener('click', function() {
-                document.querySelector('.modal').style.display = 'none';
-            })
-
-            // if you click the cancel button, the modal window disappears
-            document.querySelector('.modal-cancel').addEventListener('click', function() {
-                document.querySelector('.modal').style.display = 'none';
-            })
-
-        }
-
-        const elements = document.querySelectorAll(".update")
-
-        for (let i = 0; i < elements.length; i++) {
-            elements[i].addEventListener('click', f)
-        }
-    </script>
 </body>
 
 </html>
