@@ -8,37 +8,7 @@ include "crud.php"
 
 <head>
     <title>To-Do Application</title>
-    <style>
-        * {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 16px;
-        }
-
-        h1 {
-            font-size: 24px;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            width: 200px;
-            height: 25px;
-            border: solid 1px;
-            border-collapse: collapse;
-            text-align: center;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        input {
-            border: solid 1px black;
-        }
-    </style>
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
