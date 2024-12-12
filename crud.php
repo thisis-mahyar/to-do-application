@@ -98,3 +98,28 @@ function update($name, $description, $id)
     }
 }
 
+function delete($id)
+{
+    $con = new PDO("mysql:hostname=localhost;dbname=to_do_app", "root", "");
+    $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    try {
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($id)) {
+
+            $stmt = $con->prepare("
+                DELETE FROM tasks
+                WHERE id = :id
+            ");
+
+            $stmt->bindParam(":id", $id);
+
+            $stmt->execute();
+
+            // PRG Problem
+            header("Location: to-do-application.php");
+            exit;
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
